@@ -37,6 +37,7 @@ button {
     padding: 15px;
 }
 .about {
+    position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -306,6 +307,12 @@ footer{
     display: flex;
     justify-content: center;
 }
+.orb-canvas{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
 @keyframes rotation{
     0% {
         transform:rotate(0deg);
@@ -390,6 +397,7 @@ footer{
         height: 500px;
     }
 }
+
 @media (max-width: 1024px) {
     .about {
         padding: 20px;
