@@ -18,3 +18,23 @@ function initIncreaseNumberAnimation() {
     increaseNumberAnimationStep(0,element,5000)
 }
 initIncreaseNumberAnimation();
+
+//"Другое" в section
+document.querySelector('#budget').addEventListener('change', function handleSelectChange(event) {
+    if (event.target.value === 'other') {
+        const formContainer = document.createElement('div')
+        formContainer.classList.add('form__group', 'form__other-input')
+        
+        const input = document.createElement('input')
+        input.placeholder = 'Введите ваш вариант'
+        input.type = "text"
+        formContainer.appendChild(input)
+
+        document.querySelector('#form form').insertBefore(formContainer, document.querySelector('.form__submit'))
+    }
+    const otherInput = document.querySelector('.form__other-input')
+    if (event.target.value !== 'other' && Boolean(otherInput)) {
+        
+        document.querySelector('#form form').removeChild(otherInput)
+    }
+});
