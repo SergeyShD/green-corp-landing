@@ -14,10 +14,9 @@ function increaseNumberAnimationStep(i, element, endNumber) {
 
 }
 function initIncreaseNumberAnimation() {
-    element = document.querySelector('.features__clients-count')
+    const element = document.querySelector('.features__clients-count')
     increaseNumberAnimationStep(0,element,5000)
 }
-initIncreaseNumberAnimation();
 
 //"Другое" в section
 document.querySelector('#budget').addEventListener('change', function handleSelectChange(event) {
@@ -38,3 +37,41 @@ document.querySelector('#budget').addEventListener('change', function handleSele
         document.querySelector('#form form').removeChild(otherInput)
     }
 });
+
+//скролл и анимация рейтинга
+let animationInited = false;
+function updateScroll() {
+    let windowBottomPosition = window.scrollY + window.innerHeight;
+    let countElementPosition = document.querySelector('.features__clients-count').offsetTop;
+
+
+    if (windowBottomPosition >= countElementPosition && !animationInited){
+        animationInited = true;
+        initIncreaseNumberAnimation();
+    }
+
+    let head = document.querySelector("head")
+
+    if (window.scrollY > 0) {     
+        head.classList.add("header__scrolled")
+    } else {
+        head.classList.remove("header__scrolled")
+    }
+}
+window.addEventListener('scroll', updateScroll);
+
+function addSmoothScroll(anchor) {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    addSmoothScroll(anchor);
+});
+
+// addSmoothScroll(document.querySelector('.more-button'));
